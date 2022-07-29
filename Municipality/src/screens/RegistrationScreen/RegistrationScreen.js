@@ -23,7 +23,7 @@ export default function RegistrationScreen({navigation}) {
         }
         firebase
             .auth()
-            .createUserWithEmailAndPassword(email, password)
+            .createUserWith(email, password)
             .then((response) => {
                 const uid = response.user.uid
                 const data = {
