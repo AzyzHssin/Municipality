@@ -1,16 +1,14 @@
-import { firebase } from '../../firebase/config';
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
+import { firebase } from '../../firebase/config'
 
 export default function RegistrationScreen({navigation}) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
-    
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
@@ -21,6 +19,7 @@ export default function RegistrationScreen({navigation}) {
             alert("Passwords don't match.")
             return
         }
+    
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
