@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { firebase } from './src/firebase/config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginScreen, HomeScreen, RegistrationScreen ,GoogleLogin} from './src/screens'
-
-
+import { LoginScreen, HomeScreen, RegistrationScreen, ParametreScreen, ComplainScreen } from './src/screens';
+import Suggestion from './src/screens/suggesstions/SuggesstionScreen'
 import {decode, encode} from 'base-64'
 // import GoogleSignin from './src/screens/GoogleLogin/GoogleLogin';
 
@@ -49,20 +48,20 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        { user ? (
-          <Stack.Screen name="Home">
-            {props => <HomeScreen {...props} extraData={user} />}
-          </Stack.Screen>
+      <Stack.Navigator> 
+      { user ? (
+        <Stack.Screen name="Home">
+        {props => <HomeScreen {...props} extraData={user} />}
+        </Stack.Screen>
         ) : (
           <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
-            <Stack.Screen name="Google" component={GoogleLogin} />
-        
-            
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Registration" component={RegistrationScreen} />
           </>
         )}
+          <Stack.Screen name="Suggestion" component={Suggestion} />
+          <Stack.Screen name="Complain" component={ComplainScreen} />
+          <Stack.Screen name="Parametre" component={ParametreScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
