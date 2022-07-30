@@ -10,6 +10,7 @@ const SuggesstionScreen = ({navigation}) => {
     const[type,setType]=useState('')
     const [name,setname]=useState('')
     const [desc,setdesc]=useState('')
+
     const [page,setPage]=useState(1)
 const ref=firebase.firestore().collection('suggestions')
 var handlesubmit= async ()=>{
@@ -50,7 +51,8 @@ ref.add({type:"general"})
             return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
           }}
           defaultButtonText={'Select type '}
-    />:page===2 ?     <TextInput style={styles.input} value={name} onChangeText={setname} placeholder='municipality name ' />
+    />
+    :page===2 ?     <TextInput style={styles.input} value={name} onChangeText={setname} placeholder='municipality name ' />
     : page===3?(    <TextInput style={styles.input} value={desc} onChangeText={setdesc} placeholder='description ' />
     ):null}
 
