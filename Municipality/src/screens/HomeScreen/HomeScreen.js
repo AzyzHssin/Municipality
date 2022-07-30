@@ -1,10 +1,39 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from 'react';
+import { View, Text, Button, StyleSheet, StatusBar } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-export default function HomeScreen(props) {
+const HomeScreen = ({navigation}) => {
+
+const { colors } = useTheme();
+
+const theme = useTheme();
+  
     return (
-        <View>
-            <Text>Home Screen</Text>
-        </View>
-    )
-}
+      <View style={styles.container}>
+        <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
+        <Text style={{ fontSize: 26, fontWeight: 'bold' }}>Home Screen</Text>
+      <Button
+        title="Go to complain screen"
+        onPress={() => navigation.navigate("Complain")}
+      />
+      <Button
+        title="Go to Suggestion screen"
+        onPress={() => navigation.navigate("Suggestion")}
+      />
+      <Button
+        title="Go to Parametre screen"
+        onPress={() => navigation.navigate("Parametre")}
+      />
+      </View>
+    );
+};
+
+export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center'
+  },
+});
