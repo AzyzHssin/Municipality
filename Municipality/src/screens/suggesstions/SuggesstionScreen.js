@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 import {firebase} from "../../firebase/config"
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SugDes from '../SugDesc/SugDes';
-import Municipality from '../MunicipalityLocation/Municipality';
-import styles from './styles';
+import styles from './styles.js'
 const SuggesstionScreen = ({navigation}) => {
     const options = ["general", "electicity", "garbage"]
 
@@ -105,4 +103,3 @@ ref.add({type:"general"})
 }
 
 export default SuggesstionScreen
-
