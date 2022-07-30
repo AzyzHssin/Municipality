@@ -1,0 +1,21 @@
+[debug] [2022-07-28T20:48:59.678Z] ----------------------------------------------------------------------
+[debug] [2022-07-28T20:48:59.680Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\oussama\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-07-28T20:48:59.681Z] CLI Version:   11.4.0
+[debug] [2022-07-28T20:48:59.681Z] Platform:      win32
+[debug] [2022-07-28T20:48:59.681Z] Node Version:  v16.15.0
+[debug] [2022-07-28T20:48:59.682Z] Time:          Thu Jul 28 2022 21:48:59 GMT+0100 (Central European Standard Time)
+[debug] [2022-07-28T20:48:59.683Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-28T20:48:59.692Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-28T20:48:59.693Z] > authorizing via signed-in user (oussama.fajraoui1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\oussama\OneDrive\Bureau\RBK\IMERSIVE\Municipality\react-native-firebase
+
