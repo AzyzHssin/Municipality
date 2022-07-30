@@ -95,7 +95,7 @@ ref.add({type:"general"})
     }}><Text>back</Text></TouchableOpacity>
     </View>):null}
 */}
-{page>1?(<TouchableOpacity><Text>back</Text></TouchableOpacity>):null}
+{page>1?(<TouchableOpacity onPress={()=>{setPage(page-1)}}><Text>back</Text></TouchableOpacity>):null}
 
     </View>
     </KeyboardAvoidingView>
