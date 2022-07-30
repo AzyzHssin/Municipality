@@ -79,6 +79,7 @@ export default function HomeScreen(props) {
             </View>
             { entities && (
                 <View style={styles.listContainer}>
+
                     <FlatList
                         data={entities}
                         renderItem={renderEntity}
