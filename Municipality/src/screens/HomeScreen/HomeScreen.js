@@ -4,9 +4,9 @@ import { useTheme } from '@react-navigation/native';
 
 const HomeScreen = ({navigation}) => {
 
-  const { colors } = useTheme();
+const { colors } = useTheme();
 
-  const theme = useTheme();
+const theme = useTheme();
   
     return (
       <View style={styles.container}>
@@ -20,7 +20,6 @@ const HomeScreen = ({navigation}) => {
         title="Go to Suggestion screen"
         onPress={() => navigation.navigate("Suggestion")}
       />
-
       <Button
         title="Go to Parametre screen"
         onPress={() => navigation.navigate("Parametre")}
