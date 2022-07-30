@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-
+import Tabe from './Tabe'
 const HomeScreen = ({navigation}) => {
 
 const { colors } = useTheme();
@@ -22,9 +22,11 @@ const theme = useTheme();
       />
       <Button
         title="Go to Parametre screen"
-        onPress={() => navigation.navigate("Parametre")}
+        onPress={() => navigation.navigate("Tabe")}
       />
+     
       </View>
+      
     );
 };
 
