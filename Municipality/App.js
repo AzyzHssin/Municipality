@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { firebase } from './src/firebase/config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginScreen, HomeScreen, RegistrationScreen } from './src/screens'
+import { LoginScreen, HomeScreen, RegistrationScreen, ParametreScreen, ComplainScreen } from './src/screens';
+import Suggestion from './src/screens/suggesstions/SuggesstionScreen'
 import {decode, encode} from 'base-64'
-import SuggesstionScreen from './src/screens/suggesstions/SuggesstionScreen';
-import Municipality from './src/screens/MunicipalityLocation/Municipality';
-import SugDes from './src/screens/SugDesc/SugDes';
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -47,22 +45,20 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-      
+      <Stack.Navigator> 
       { user ? (
-        <Stack.Screen name="Suggestions">
-        {props => <SuggesstionScreen {...props} extraData={user} />}
+        <Stack.Screen name="Home">
+        {props => <HomeScreen {...props} extraData={user} />}
         </Stack.Screen>
         ) : (
           <>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Registration" component={RegistrationScreen} />
-          <Stack.Screen name="Municipality" component={Municipality} />
-          <Stack.Screen name="Suggestion" component={SuggesstionScreen} />
-            <Stack.Screen name="Suggestiondesc" component={SugDes} />
-
           </>
         )}
+          <Stack.Screen name="Suggestion" component={Suggestion} />
+          <Stack.Screen name="Complain" component={ComplainScreen} />
+          <Stack.Screen name="Parametre" component={ParametreScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
