@@ -8,6 +8,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Plus...
 
+//Screens :
+import Home from './HomeScreen';
+import Complain from '../ComplainScreen/ComplainScreen';
+import Suggestion from '../suggesstions/SuggesstionScreen';
+import Parametre from '../ParametreScreen/ParametreScreen';
 
 // Font Awesome Icons...
 import { FontAwesome5 } from '@expo/vector-icons'
@@ -51,7 +56,7 @@ export default function Tabe() {
 
           // Tab ICons....
         }
-        <Tab.Screen name={"Home"} component={HomeScreen} options={{
+        <Tab.Screen name={"Home"} component={Home} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
@@ -75,7 +80,7 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Search"} component={SearchScreen} options={{
+        <Tab.Screen name={"Complain"} component={Complain} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
@@ -128,7 +133,7 @@ export default function Tabe() {
           )
         }}></Tab.Screen>
 
-        <Tab.Screen name={"Notifications"} component={NotificationScreen} options={{
+        <Tab.Screen name={"Suggestion"} component={Suggestion} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
@@ -152,7 +157,7 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Settings"} component={SettingsScreen} options={{
+        <Tab.Screen name={"Parametre"} component={Parametre} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
