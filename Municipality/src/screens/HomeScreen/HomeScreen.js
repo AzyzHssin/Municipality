@@ -20,20 +20,10 @@ const {brand, darkLight, green} = Colors;
 export default function HomeScreen({navigation}) {
 
     return (
-        <>
-        <StatusBar style="light" />
                 <InnerContainer>
-                <WelcomeImage resizeMode="cover" source={require('../../../assets/baladia.png')} />
-                <WelcomeContainer>
+                <WelcomeImage resizeMode="cover" source={require('../../../assets/Welcome.jpg')} />    
             <PageTitle welcome={true}>Welcome!</PageTitle>
-            <StyledFormArea>
-                <Line />
-                    <StyledButton>
-                   <Buttontext>Logout</Buttontext>
-                   </StyledButton>
-                </StyledFormArea>
-        </WelcomeContainer>
                 </InnerContainer>
-        </>
+                
     )
 }
