@@ -15,7 +15,7 @@ import Suggestion from '../suggesstions/SuggesstionScreen';
 import Parametre from '../ParametreScreen/ParametreScreen';
 
 // Font Awesome Icons...
-import { FontAwesome5 } from '@expo/vector-icons'
+import { FontAwesome5, AntDesign } from '@expo/vector-icons'
 import { useRef } from 'react';
 
 const Tab = createBottomTabNavigator();
@@ -80,18 +80,18 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Complain"} component={Complain} options={{
+        <Tab.Screen name={"Settings"} component={SettingsScreen} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="search"
+              <AntDesign
+                name="addfolder"
                 size={20}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
@@ -140,11 +140,11 @@ export default function Tabe() {
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="bell"
-                size={20}
+              <AntDesign
+                name="pluscircle"
+                size={24}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
@@ -164,11 +164,11 @@ export default function Tabe() {
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="user-alt"
-                size={20}
+              <AntDesign
+                name="setting"
+                size={24}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
