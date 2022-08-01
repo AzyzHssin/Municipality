@@ -1,13 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import {firebase} from '../../firebase/config'
 
 
+//Icons: 
+
+import { Ionicons, Octicons } from '@expo/vector-icons';
+
+//Formik :
+
+import { Formik } from 'formik';
+
+import { 
+    StyledContainer,
+    InnerContainer,
+    PageLogo,
+    PageTitle,
+    SubTitle,
+    StyledFormArea,
+    LeftIcon,
+    StyledInputLablel,
+    StyledTextInput,
+    RightIcon,
+    Colors,
+    StyledButton,
+    Buttontext,
+    MsgBox,
+    Line
+} from "../../../components/styles.js";
+
+const {brand, darkLight, green} = Colors;
+
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [hidePassword, setHidePassword] = useState(true)
    
    
    
@@ -45,40 +75,65 @@ export default function LoginScreen({navigation}) {
     return (
         <View style={styles.container}>
             <KeyboardAwareScrollView
-                style={{ flex: 1, width: '100%' }}
+                style={{ flex: 1, width: '90%' }}
                 keyboardShouldPersistTaps="always">
-                <Image
-                    style={styles.logo}
-                    source={require('../../../assets/baladia.png')}
-                />
-                <TextInput
-                    style={styles.input}
+                <InnerContainer>
+                <PageLogo source={require('../../../assets/baladia.png')} />
+                <PageTitle>Municipality</PageTitle>
+                <SubTitle>Account Login</SubTitle>
+                </InnerContainer>
+                <StyledFormArea>
+                <MyTextInput
+                    icon="mail"
                     placeholder='E-mail'
-                    placeholderTextColor="#aaaaaa"
+                    placeholderTextColor={darkLight}
                     onChangeText={(text) => setEmail(text)}
                     value={email}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#aaaaaa"
-                    secureTextEntry
+                
+                <MyTextInput
+                    icon="lock"
+                    placeholderTextColor={darkLight}
                     placeholder='Password'
                     onChangeText={(text) => setPassword(text)}
                     value={password}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
+                    secureTextEntry={hidePassword}
+                    isPassword={true}
+                    hidePassword={hidePassword}
+                    setHidePassword={setHidePassword}
                 />
-                <TouchableOpacity
-                    style={styles.button}
+                <StyledButton
                     onPress={() => onLoginPress()}>
-                    <Text style={styles.buttonTitle}>Log in</Text>
-                </TouchableOpacity>
+                    <Buttontext>Log in</Buttontext>
+                </StyledButton>
+                <Line />
+                </StyledFormArea>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
+                
             </KeyboardAwareScrollView>
-        </View>
+            </View>
     )
+}
+
+const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ...props}) =>{
+     return (
+        <View>
+              <LeftIcon>
+                    <Octicons name={icon} size={30} color={brand} />
+              </LeftIcon>
+              <StyledInputLablel>{label}</StyledInputLablel>
+              <StyledTextInput {...props} />
+              {isPassword && (
+                <RightIcon onPress={()=> setHidePassword(!hidePassword)}>
+                    <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size= {30} color={darkLight} />
+                </RightIcon>
+              )} 
+        </View>
+     )
 }

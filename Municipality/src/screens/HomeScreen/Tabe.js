@@ -8,12 +8,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Plus...
 
+//Screens :
+import Home from './HomeScreen';
+import Complain from '../ComplainScreen/ComplainScreen';
+import Suggestion from '../suggesstions/SuggesstionScreen';
+import Parametre from '../ParametreScreen/ParametreScreen';
 
 // Font Awesome Icons...
-import { FontAwesome5 } from '@expo/vector-icons'
+import { FontAwesome5, AntDesign } from '@expo/vector-icons'
 import { useRef } from 'react';
 import SuggesstionScreen from '../suggesstions/SuggesstionScreen';
-
+import RenderSuggessions from '../Rendersuggessions/RenderSuggessions';
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -52,7 +57,7 @@ export default function Tabe() {
 
           // Tab ICons....
         }
-        <Tab.Screen name={"Home"} component={HomeScreen} options={{
+        <Tab.Screen name={"Home"} component={Home} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
@@ -76,18 +81,18 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Search"} component={SearchScreen} options={{
+        <Tab.Screen name={"Rendersugs"} component={RenderSuggessions} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="search"
+              <AntDesign
+                name="addfolder"
                 size={20}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
@@ -129,18 +134,18 @@ export default function Tabe() {
           )
         }}></Tab.Screen>
 
-        <Tab.Screen name={"Suggestion"} component={SuggesstionScreen} options={{
+        <Tab.Screen name={"Suggestion"} component={Suggestion} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="bell"
-                size={20}
+              <AntDesign
+                name="pluscircle"
+                size={24}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
@@ -153,18 +158,18 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Settings"} component={SettingsScreen} options={{
+        <Tab.Screen name={"Parametre"} component={Parametre} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
               top: 20
             }}>
-              <FontAwesome5
-                name="user-alt"
-                size={20}
+              <AntDesign
+                name="setting"
+                size={24}
                 color={focused ? 'turquoise' : 'gray'}
-              ></FontAwesome5>
+              ></AntDesign>
             </View>
           )
         }} listeners={({ navigation, route }) => ({
