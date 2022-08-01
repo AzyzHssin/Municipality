@@ -36,6 +36,7 @@
     "react-native-gesture-handler": "~2.2.1",
     "react-native-ico-material-design": "^3.3.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-maps": "0.30.2",
     "react-native-multi-selectbox": "^1.5.0",
     "react-native-multiple-select": "^0.5.9",
     "react-native-paper": "^4.12.4",
@@ -46,6 +47,7 @@
     "react-native-select-dropdown": "^2.0.4",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "0.17.7",
+    "react-native-web-maps": "^0.3.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {

@@ -17,7 +17,7 @@ import Parametre from '../ParametreScreen/ParametreScreen';
 // Font Awesome Icons...
 import { FontAwesome5, AntDesign } from '@expo/vector-icons'
 import { useRef } from 'react';
-
+/* import ComplainMap from '../Maps/ComplainMap' */
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -110,7 +110,7 @@ export default function Tabe() {
           // Extra Tab Screen For Action Button..
         }
 
-        <Tab.Screen name={"ActionButton"} component={EmptyScreen} options={{
+        <Tab.Screen name={"ComplainMap"} component={ComplainMap} options={{
           tabBarIcon: ({ focused }) => (
 
             <TouchableOpacity>
