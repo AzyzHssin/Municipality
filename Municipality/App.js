@@ -63,7 +63,7 @@ export default function App() {
           <Stack.Screen name="Suggestion" component={Suggestion} />
           <Stack.Screen name="Complain" component={ComplainScreen} />
           <Stack.Screen name="Parametre" component={ParametreScreen} />
-          <Stack.Screen name="Home" component={Tabe} />
+          <Stack.Screen name="Tabe" component={Tabe} />
       </Stack.Navigator>
    
      
