@@ -3,8 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { firebase } from './src/firebase/config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginScreen, HomeScreen, RegistrationScreen, ParametreScreen, ComplainScreen } from './src/screens';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { LoginScreen, HomeScreen, RegistrationScreen, ParametreScreen, ComplainScreen} from './src/screens';
+import RenderSuggessions from './src/screens/Rendersuggessions/RenderSuggessions';
+import Tabe from './src/screens/HomeScreen/Tabe'
 import Suggestion from './src/screens/suggesstions/SuggesstionScreen'
+
+
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -47,19 +52,24 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator> 
       { user ? (
-        <Stack.Screen name="Home">
-        {props => <HomeScreen {...props} extraData={user} />}
+        <Stack.Screen name="Municipality">
+        {props => <Tabe {...props} extraData={user} />}
         </Stack.Screen>
         ) : (
           <>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Registration" component={RegistrationScreen} />
           </>
-        )}
+          )}
+          
           <Stack.Screen name="Suggestion" component={Suggestion} />
           <Stack.Screen name="Complain" component={ComplainScreen} />
           <Stack.Screen name="Parametre" component={ParametreScreen} />
+          <Stack.Screen name="RenderSuggs" component={RenderSuggessions} />
+          <Stack.Screen name="Tabe" component={Tabe} />
       </Stack.Navigator>
+   
+     
     </NavigationContainer>
   );
 }

@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "react-native-firebase",
+    "plugins": ["expo-image-picker"],
     "slug": "react-native-firebase",
     "version": "1.0.0",
     "orientation": "portrait",

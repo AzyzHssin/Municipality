@@ -1,104 +1,138 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,Image, FlatList, ScrollView, Platform} from 'react-native'
+import React, { useEffect, useState } from 'react'
 import {firebase} from "../../firebase/config"
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles.js'
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
+import * as ImagePicker from "expo-image-picker"
+import { SafeAreaView } from 'react-native-safe-area-context';
+import DocumentPicker from "react-native-document-picker"
+// import RNFetchBlob from 'rn-fetch-blob';
 const SuggesstionScreen = ({navigation}) => {
     const options = ["general", "electicity", "garbage"]
-
     const[type,setType]=useState('')
     const [name,setname]=useState('')
     const [desc,setdesc]=useState('')
+    const [image,setImage]=useState(null)
+    const [uploading,setUploading]=useState(false)
     const [page,setPage]=useState(1)
+    const[longitude,setLongitute]=useState(0)
+    const[latitude,setLatitude]=useState(0)
+    const [list,setList]=useState([])
+    
+        async function choosefile (){
+            try{
+                const file=await DocumentPicker.pick({
+                    type:[DocumentPicker.types.allFiles]
+                })
+
+                const path=await normalizepath(file.uri)
+            }catch(e){
+                if(DocumentPicker.isCancel(e)){
+
+                }
+                else{
+                    throw e
+                }
+            }
+        }
+        async function normalizepath(path){
+            if(Platform.OS==="ios"|| Platform.OS==="android"){
+                const filePrefix='file://'
+                if(path.startsWith(filePrefix)){
+                    path=path.substring(filePrefix.length)
+                    try{
+                        path=decodeURI(path)
+
+                    }catch(err){
+
+                    }
+                }
+            }
+        }
 const ref=firebase.firestore().collection('suggestions')
 var handlesubmit= async ()=>{
-  await  ref.add({type:type,municipalityname:name,description:desc})
-  alert("added successfully")
+    UploadImage()
+    await  ref.add({type:type,municipalityname:name,description:desc,image:image,location:{latitude:latitude,longitude:longitude}})
+    alert("added successfully")
+    console.log("image "+image.uri)
+  navigation.navigate("Rendersuggestions")
 }
-    var handlepressgeneral=()=>{
-ref.add({type:"general"})
-        navigation.navigate("Municipality")
+
+const PickImage=async () =>{
+   let result=await ImagePicker.launchImageLibraryAsync({
+    mediaTypes:ImagePicker.MediaTypeOptions.All,
+    allowsEditing:true,
+    aspect: [4,3],
+    quality:1
+})
+   const source= {uri: result.uri}
+    console.log(source)
+    setImage(source)
+}    
+const UploadImage=async()=>{
+    setUploading(true)
+    const response=await fetch(image.uri)
+    const blob=await response.blob()
+    const filename=image.uri.substring(image.uri.lastIndexOf('/')+1)
+    var ref=firebase.storage().ref().child(filename).put(blob)
+    try{
+        await ref
     }
-    var handlepresselectricity=()=>{
-        ref.add({type:"garbage"})
-                navigation.navigate("Municipality")
-            }
-            var handlepressgarbage=()=>{
-                ref.add({type:"garbage"})
-                        navigation.navigate("Municipality")
-                    }
-  return (
-    <KeyboardAvoidingView style={styles.container} behavior='padding'>
-    <View style={styles.inputcontainer}>
-    {page===1 ? <SelectDropdown
-        data={options}
-        onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index)
-            setType(selectedItem)
+    catch(e){
+        console.log(e)
+    }
+    setUploading(false)
+    Alert.alert(
+        'photo uploaded'
+        )
+        setImage(null)
+    }
+    // No permissions request is necessary for launching the image library
     
-        }}
-        buttonTextAfterSelection={(selectedItem, index) => {
-            
-            return selectedItem
-        }}
-        rowTextForSelection={(item, index) => {
-            
-            return item
-        }}
-        renderDropdownIcon={isOpened => {
-            return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
-          }}
-          defaultButtonText={'Select type '}
-    />:page===2 ?     <TextInput style={styles.input} value={name} onChangeText={setname} placeholder='municipality name ' />
-    : page===3?(    <TextInput style={styles.input} value={desc} onChangeText={setdesc} placeholder='description ' />
-    ):null}
+    return (
+        <ScrollView>
+        <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <View style={styles.inputcontainer}>
+        <SelectDropdown
+            data={options}
+            onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index)
+                setType(selectedItem)
+                
+            }}
+            buttonTextAfterSelection={(selectedItem, index) => {
+                
+                return selectedItem
+            }}
+            rowTextForSelection={(item, index) => {
+                
+                return item
+            }}
+            renderDropdownIcon={isOpened => {
+                return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+            }}
+            defaultButtonText={'Select type '}/>
+    <TextInput style={styles.input} value={desc} onChangeText={setdesc} placeholder='description ' />
+   <SafeAreaView>
+   
+   <TouchableOpacity onPress={PickImage}><Text>pick an Image </Text></TouchableOpacity>
+   <TouchableOpacity onPress={choosefile}><Text>pick a pdf fil </Text></TouchableOpacity>
+   {image&&(<View><Image source={{uri:image.uri}} style={{width:300,height:300}}/></View>)}
 
-    {page<3?(
-        <TouchableOpacity onPress={()=>{
-        const nextpage=page+1
-        setPage(nextpage)
-    }}><Text>next</Text></TouchableOpacity>):null}
+   
+   </SafeAreaView>
+    
 
-   {/* <SelectDropdown
-	data={options}
-	onSelect={(selectedItem, index) => {
-		console.log(selectedItem, index)
-        setType(selectedItem)
-
-	}}
-	buttonTextAfterSelection={(selectedItem, index) => {
-		
-		return selectedItem
-	}}
-	rowTextForSelection={(item, index) => {
-		
-		return item
-	}}
-    renderDropdownIcon={isOpened => {
-        return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
-      }}
-      defaultButtonText={'Select type '}
-    />*/}
-    {/* <TextInput style={styles.input} value={name} onChangeText={setname} placeholder='municipality name ' />*/}
-   {/* <TextInput style={styles.input} value={desc} onChangeText={setdesc} placeholder='description ' />*/}
-   {/*  <TouchableOpacity onPress={()=>handlepressgeneral()}><Text>general</Text></TouchableOpacity>
-     <TouchableOpacity onPress={()=>handlepresselectricity()} ><Text>electricity</Text></TouchableOpacity>
-     <TouchableOpacity onPress={()=>handlepressgarbage()}><Text>garbage</Text></TouchableOpacity>*/}
-
- {page ===3? (<View style={styles.button}><TouchableOpacity onPress={()=>handlesubmit()}><Text>submit</Text></TouchableOpacity></View>):null} 
-  
- {/* {page > 1 ? (<View>
-    <TouchableOpacity onPress={()=>{
-        const prevpage=page-1 
-        setPage(prevpage)
-    }}><Text>back</Text></TouchableOpacity>
-    </View>):null}
-*/}
-{page>1?(<TouchableOpacity onPress={()=>{setPage(page-1)}}><Text>back</Text></TouchableOpacity>):null}
 
     </View>
+    <View style={styles.buttoncontainer}>
+  
+     <View style={styles.button}><TouchableOpacity style={styles.but} onPress={()=>handlesubmit()}><Text style={styles.buttontext}>submit</Text></TouchableOpacity></View>
+    </View>
     </KeyboardAvoidingView>
+    </ScrollView>
   )
 }
 
