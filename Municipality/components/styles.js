@@ -63,6 +63,11 @@ export const PageTitle = styled.Text`
   font-weight: bold;
   color: ${brand};
   padding: 10px;
+
+  ${(props) => props.welcome && `
+     font-size: 35px;
+     
+  `}
 `;
 
 export const SubTitle = styled.Text`
@@ -71,6 +76,11 @@ export const SubTitle = styled.Text`
   letter-spacing: 1px;
   font-weight: bold;
   color: ${tertiary};
+
+  ${(props) => props.welcome && `
+  margin-bottom: 5px;
+  font-weight: normal;
+`}
 `;
 
 export const StyledFormArea = styled.View`
