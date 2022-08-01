@@ -7,22 +7,49 @@ import { color } from "react-native-reanimated";
         alignItems:'center'
     },
     inputcontainer:{
-        width:"80%"
+        width:"80%",
+        marginBottom:40
+        
 
     },
     input:{
         backgroundColor:"white",
         justifyContent: 'center',
         alignItems:'center',
-        marginTop:40
+        marginTop:40,
+        borderBottomColor:"black",
+        borderWidth:2
 
     },
     button:{
-        backgroundColor:'turquoise',
+        backgroundColor:'#1ED760',
         padding:15,
-        width:"100%",
+        width:"40%",
         padding:15,
-        borderRadius:10,
-        marginTop:10
+        borderRadius:500,
+        marginTop:10,
+        lineHeight:1,
+        fontWeight:700,
+        height:48,
+    },
+    but:{
+        textAlign:"center",
+        alignItems:"center",
+        
+
     }
+,
+buttontext:{
+    color:"white",
+    fontSize:16,
+    fontWeight:'700'
+},
+buttoncontainer:{
+    width:"100%",
+    display:"flex",
+    alignContent:"center",
+    alignItems:"center",
+    
+}
+       
 })
