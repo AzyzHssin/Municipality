@@ -17,7 +17,8 @@ import Parametre from '../ParametreScreen/ParametreScreen';
 // Font Awesome Icons...
 import { FontAwesome5, AntDesign } from '@expo/vector-icons'
 import { useRef } from 'react';
-
+import SuggesstionScreen from '../suggesstions/SuggesstionScreen';
+import RenderSuggessions from '../Rendersuggessions/RenderSuggessions';
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -48,7 +49,7 @@ export default function Tabe() {
             height: 10
           },
           paddingHorizontal: 20,
-        }
+        },
       }}>
 
         {
@@ -56,12 +57,13 @@ export default function Tabe() {
 
           // Tab ICons....
         }
-        <Tab.Screen name={"Home"} component={Home} options={{
+        <Tab.Screen
+        name={"Home"} component={Home} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
-              top: 20
+              top: 20,
             }}>
               <FontAwesome5
                 name="home"
@@ -80,7 +82,7 @@ export default function Tabe() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Settings"} component={SettingsScreen} options={{
+        <Tab.Screen name={"Rendersugs"} component={RenderSuggessions} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
@@ -229,10 +231,11 @@ function SettingsScreen() {
   );
 }
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
+
     </View>
   );
 }
