@@ -50,10 +50,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-        headerShown: false
-      }}> 
+          headerShown: false
+        }}> 
       { user ? (
-        <Stack.Screen name="Tbe">
+        <Stack.Screen name="Municipality">
         {props => <Tabe {...props} extraData={user} />}
         </Stack.Screen>
         ) : (
@@ -62,7 +62,7 @@ export default function App() {
           <Stack.Screen name="Registration" component={RegistrationScreen} />
           </>
         )}
-          <Stack.Screen name="Home" component={HomeScreen} />
+       
           <Stack.Screen name="Suggestion" component={Suggestion} />
           <Stack.Screen name="Complain" component={ComplainScreen} />
           <Stack.Screen name="Parametre" component={ParametreScreen} />
