@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+// import { StyleSheet } from 'react-native';
 
-export const InnerContainer = styled.View`
-flex: 1;
-width: 100%;
-align-items: center;
-`
-export const WelcomeContainer = styled(InnerContainer)
+// export const InnerContainer = styled.View`
+// flex: 1;
+// width: 100%;
+// align-items: center;
+// `
+// export const WelcomeContainer = styled(InnerContainer)
 // export default StyleSheet.create({
 //     container: {
 //         flex: 1,
