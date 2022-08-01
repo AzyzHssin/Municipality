@@ -1,4 +1,5 @@
-import styled from "styled-components";
+
+import styled from "styled-components/native";
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import Constants from 'expo-constants';
 
@@ -52,7 +53,7 @@ export const Avatar = styled.Image`
 `
 
 export const WelcomeImage = styled.Image`
-    height: 50%;
+    height: 40%;
     min-width: 100%;
 `
 

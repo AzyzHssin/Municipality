@@ -52,10 +52,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-        headerShown: false
-      }}> 
+          headerShown: false
+        }}> 
       { user ? (
-        <Stack.Screen name="Tbe">
+        <Stack.Screen name="TAbe">
         {props => <Tabe {...props} extraData={user} />}
         </Stack.Screen>
         ) : (

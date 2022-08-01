@@ -49,7 +49,7 @@ export default function Tabe() {
             height: 10
           },
           paddingHorizontal: 20,
-        }
+        },
       }}>
 
         {
@@ -57,12 +57,13 @@ export default function Tabe() {
 
           // Tab ICons....
         }
-        <Tab.Screen name={"Home"} component={Home} options={{
+        <Tab.Screen
+        name={"Home"} component={Home} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
               position: 'absolute',
-              top: 20
+              top: 20,
             }}>
               <FontAwesome5
                 name="home"
